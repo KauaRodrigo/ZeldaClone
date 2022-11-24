@@ -48,13 +48,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		BufferStrategy bs = this.getBufferStrategy();
 		
 		if(bs == null) {
-			this.createBufferStrategy(3);			
+			this.createBufferStrategy(3);
 			return;
 		}
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(new Color(250, 250, 250));
+		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		player.render(g);
@@ -73,40 +73,40 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}		
+		}
 		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.left = false;
-			player.up = false;
-			player.down= false;
 			player.right = true;
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.right = false;
-			player.up = false;
-			player.down= false;
 			player.left = true;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
-			player.left = false;
-			player.right = false;
-			player.down= false;
 			player.up = true;
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player.left = false;
-			player.up = false;
-			player.right= false;
 			player.down = true;
-		}		
+		}
 		
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {		
+	public void keyReleased(KeyEvent e) {
+
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = false;
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = false;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			player.up = false;
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.down = false;
+		}
 		
 	}
 
