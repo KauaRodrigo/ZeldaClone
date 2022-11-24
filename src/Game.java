@@ -108,6 +108,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			player.down = false;
 		}
 		
+		System.out.println("Hello");
+		System.out.println("Hello");
+		System.out.println("Hello");
+		
 	}
 
 	@Override
