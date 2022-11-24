@@ -14,6 +14,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public static int WIDTH = 480, HEIGHT = 480;
 	public Player player; 
 	
+	public World world;
+	
 	public static void main(String[] args) {
 		Game game = new Game();
 		JFrame frame = new JFrame();
@@ -36,7 +38,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		this.addKeyListener(this);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		
-		player = new Player(0,0);
+		player = new Player(42,42);
+		world = new World();
 	}
 	
 	public void tick() {
@@ -54,9 +57,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.black);
+		g.setColor(new Color(10, 100, 60));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
+		new Spritesheet();
+		
+		world.render(g);
 		player.render(g);
 		
 		bs.show();
@@ -106,11 +112,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			player.up = false;
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.down = false;
-		}
-		
-		System.out.println("Hello");
-		System.out.println("Hello");
-		System.out.println("Hello");
+		}		
 		
 	}
 
