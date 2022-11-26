@@ -7,7 +7,7 @@ public class Spritesheet {
 
 	public static BufferedImage spritesheet;
 	
-	public static BufferedImage player_front;
+	public static BufferedImage[] player_front;
 	
 	public Spritesheet() {
 		try {
@@ -15,7 +15,11 @@ public class Spritesheet {
 		} catch (IOException e) { 
 			e.printStackTrace();
 		}
-		player_front  = Spritesheet.getSprite(0, 11, 16, 16);
+		player_front  = new BufferedImage[2];
+		
+		player_front[0] = Spritesheet.getSprite(0, 11, 16, 16);
+		player_front[1] = Spritesheet.getSprite(16, 11, 16, 16);
+		
 	}
 	
 	public static BufferedImage getSprite(int x,int y,int width, int height) {
