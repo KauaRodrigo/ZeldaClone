@@ -19,6 +19,8 @@ public class World {
 				blocos.add(new Blocks(640-32,yy*32));
 			}
 			
+			blocos.add(new Blocks(106, 106));
+			
 	}
 	
 	public static List<Blocks> blocos = new ArrayList<Blocks>();

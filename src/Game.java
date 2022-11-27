@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -13,7 +15,9 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	public static int WIDTH = 640, HEIGHT = 480;
 	public static int SCALE = 3;
-	public Player player; 
+	public static Player player; 
+	
+	public List<Inimigo> inimigos = new ArrayList<Inimigo>();
 	
 	public World world;
 	
@@ -41,10 +45,17 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 		player = new Player(42,42);
 		world = new World();
+								
+					
+		inimigos.add(new Inimigo(32, 32));				
 	}
 	
 	public void tick() {
 		player.tick();
+		
+		for(int i = 0; i < inimigos.size(); i++) {
+			inimigos.get(i).tick();
+		}
 	}
 	
 	public void render() {
@@ -64,6 +75,9 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		new Spritesheet();
 		
 		world.render(g);
+		for(int i = 0; i < inimigos.size(); i++) {
+			inimigos.get(i).render(g);
+		}
 		player.render(g);
 		
 		bs.show();
@@ -98,6 +112,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			player.down = true;
 		}
 		
+		if(e.getKeyCode() == KeyEvent.VK_Z) {
+			player.shoot = true;			
+		}
+		
 	}
 
 	@Override
@@ -114,6 +132,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.down = false;
 		}		
+		
+		if(e.getKeyCode() == KeyEvent.VK_Z) {
+			player.shoot = false;			
+		}
 		
 	}
 
